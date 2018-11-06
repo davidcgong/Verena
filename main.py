@@ -8,11 +8,8 @@ import matplotlib.pyplot as plt
 from sklearn.linear_model import LinearRegression
 from sklearn import preprocessing, model_selection, svm
 
-<<<<<<< HEAD
 #Linear regression, with data from quandl (moving to Alpha Vantage later)
 
-=======
->>>>>>> f6294fd95dd57cc108481b3cecd2c1d84b0954ff
 apiKey = api.getApiKey()
 
 endDate = '2017-12-19'

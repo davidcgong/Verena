@@ -5,8 +5,7 @@ import datetime as dt
 import urllib.request, json
 import os
 import numpy as np
-import api_file as api
-import tensorflow as tf
+#import tensorflow as tf  [commented out because havent used yet]
 from sklearn.preprocessing import MinMaxScaler
 
 #LSTM neural network prediction model which gets data from alpha vantage
@@ -18,7 +17,8 @@ api_key = '6DMWN75E9N3H4RLZ'
 ticker = "AAPL" 
 
 # get JSON file with stock data
-url_string = "https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=%s&outputsize=full&apikey=%s"%(ticker,api_key)
+# example: https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=AAPL&outputsize=full&apikey=6DMWN75E9N3H4RLZ
+url_string = "https://www.alphavantage.co/query?function=TIME_SERIES_DAILY_ADJUSTED&symbol=%s&outputsize=full&apikey=%s"%(ticker,api_key)
 
 #CSV file name to save to
 file_to_save = 'stock_market_data-%s.csv'%ticker
@@ -29,11 +29,12 @@ if not os.path.exists(file_to_save):
     with urllib.request.urlopen(url_string) as url:
         data = json.loads(url.read().decode())
         data = data['Time Series (Daily)']
-        df = pd.DataFrame(columns=['Date','Low','High','Close','Open'])
+        df = pd.DataFrame(columns=['Date','Low','High','Close','Open', 'Adjusted Close'])
         for k,v in data.items():
             date = dt.datetime.strptime(k, '%Y-%m-%d')
+            #we also want adjusted close because stocks split over time
             data_row = [date.date(),float(v['3. low']),float(v['2. high']),
-                        float(v['4. close']),float(v['1. open'])]
+                        float(v['4. close']),float(v['1. open']), float(v['5. adjusted close'])]
             df.loc[-1,:] = data_row
             df.index = df.index + 1
         print(df)
@@ -49,8 +50,11 @@ df.head()
 
 print(df.head())
 
+
+adjusted_price  = df['Adjusted Close']
+
 plt.figure(figsize = (18,9))
-plt.plot(range(df.shape[0]),(df['Low']+df['High'])/2.0)
+plt.plot(range(df.shape[0]), adjusted_price)
 plt.title(ticker, fontsize=18)
 plt.xticks(range(0,df.shape[0],500),df['Date'].loc[::500],rotation=45)
 plt.xlabel('Date',fontsize=18)
@@ -60,10 +64,15 @@ plt.show()
 # First calculate the mid prices from the highest and lowest 
 high_prices = df.loc[:,'High'].values
 low_prices = df.loc[:,'Low'].values
-mid_prices = (high_prices+low_prices)/2.0
+#mid_prices = (high_prices+low_prices)/2.0
+mid_prices = df.loc[:,'Adjusted Close'].values
 
-train_data = mid_prices[:11000]
-test_data = mid_prices[11000:]
+#get number of data points or index of most recent data point
+MR_data_point = df.index[1]
+print(MR_data_point)
+
+train_data = mid_prices[:MR_data_point]
+test_data = mid_prices[MR_data_point:]
 
 # for 2D array support
 scaler = MinMaxScaler()
@@ -72,16 +81,23 @@ test_data = test_data.reshape(-1, 1)
 
 smoothing_window_size = 5000
 for di in range(0,10000,smoothing_window_size):
-    fitData = train_data[di:di+smoothing_window_size]
-    print(len(fitData))
-    print('iterated')
-    scaler.fit(fitData)
-    train_data[di:di+smoothing_window_size,:] = scaler.transform(train_data[di:di+smoothing_window_size,:])
+    try:
+        fitData = train_data[di:di+smoothing_window_size]
+        print(len(fitData))
+        print('iterated')
+        scaler.fit(fitData)
+        train_data[di:di+smoothing_window_size,:] = scaler.transform(train_data[di:di+smoothing_window_size,:])
+    except ValueError:
+        break
 
-scaler.fit(train_data[di+smoothing_window_size:,:])
-train_data[di+smoothing_window_size:,:] = scaler.transform(train_data[di+smoothing_window_size:,:])
-scaler.fit(train_data[di+smoothing_window_size:,:])
-train_data[di+smoothing_window_size:,:] = scaler.transform(train_data[di+smoothing_window_size:,:])
+try:
+    scaler.fit(train_data[di+smoothing_window_size:,:])
+    train_data[di+smoothing_window_size:,:] = scaler.transform(train_data[di+smoothing_window_size:,:])
+    scaler.fit(train_data[di+smoothing_window_size:,:])
+    train_data[di+smoothing_window_size:,:] = scaler.transform(train_data[di+smoothing_window_size:,:])
+except ValueError:
+    print("Array with 0 sample(s) for MinMaxScaler")
+    pass
 
 # Reshape both train and test data
 train_data = train_data.reshape(-1)
