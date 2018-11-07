@@ -3,7 +3,7 @@
 import quandl
 import pandas as pd
 import numpy as np
-#import fbprophet
+import fbprophet
 import pytrends
 from pytrends.request import TrendReq
 
