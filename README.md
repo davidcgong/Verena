@@ -16,6 +16,7 @@ The goal of this project is to better understand the application of artificial i
 #### - Measuring performance differences between Tensorflow and Keras
 
 ## Plans:
+#### - C++
 #### - Possible FOREX/cryptocurrency support as well
 #### - Web application
 #### - Mobile application?
