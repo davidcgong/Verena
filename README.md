@@ -6,7 +6,7 @@ The goal of this project is to better understand the application of artificial i
 
 ## Currently supports:
 #### - Linear Regression
-#### - LSTM Neural Network (kind of) in Tensorflow
+#### - LSTM Neural Network in Tensorflow
 
 ## Working On:
 #### - Changing the name of this project
