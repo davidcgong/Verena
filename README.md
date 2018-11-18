@@ -5,6 +5,9 @@
 The goal of this project is to better understand the application of artificial intelligence techniques in the financial market.
 Something to keep in mind:
 
+Inline-style: 
+![alt text](https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png "Logo Title Text 1")
+
 ![alt text][logo]
 [logo]: https://www.hardikp.com/assets/ml_is_hard_in_finance/ml_class_sketch.jpg "Logo Title Text 2"
 
