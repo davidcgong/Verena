@@ -3,9 +3,8 @@
 ## Finding a way to better visualize the stock market and possible predictions in Python using ML/DL/NLP
 
 The goal of this project is to better understand the application of artificial intelligence techniques in the financial market.
-Something to keep in mind:
 
-Inline-style: 
+Something to consider:
 ![alt text](https://www.hardikp.com/assets/ml_is_hard_in_finance/ml_class_sketch.jpg)
 
 
