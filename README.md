@@ -4,18 +4,15 @@
 
 The goal of this project is to better understand the application of artificial intelligence techniques in the financial market.
 
+Though, I think I kind of swapped to doing algorithmic trading instead. Will post algorithms and blog posts in the future
+
 ## Currently doing:
-#### - Testing various models and strategies on Quantopian
+#### - Testing various models and strategies on QuantConnect
 
 ## Done:
 #### - Linear Regression
 #### - LSTM Neural Network in Tensorflow
 
-## Working On:
-#### - Improving LSTM Neural Network
-#### - Natural Language Processing for news headlines/tweets using TextBlob framework
-##### - Currently competing in [Two Sigma: Using News to Predict Stock Movements](https://www.kaggle.com/c/two-sigma-financial-news/data), goal is to obtain NLP implementation knowledge and apply it to this project. 
-#### - Measuring performance differences between Tensorflow and Keras
 
 
 
