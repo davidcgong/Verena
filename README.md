@@ -1,6 +1,6 @@
 # Verena
 
-## Finding a way to better visualize the stock market and possible predictions in Python using ML/DL/NLP
+## Finding a way to better visualize the stock market and possible predictions in Python using ML
 
 The goal of this project is to better understand the application of artificial intelligence techniques in the financial market.
 
