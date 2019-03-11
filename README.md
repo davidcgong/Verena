@@ -1,10 +1,10 @@
-# Verena
+# Verena (preliminary research)
 
 ## Finding a way to better visualize the stock market and possible predictions in Python using ML
 
-The goal of this project is to better understand the application of artificial intelligence techniques in the financial market.
+Note: I swapped to developing algorithmic trading on QuantConnect
 
-Though, I think I kind of swapped to doing algorithmic trading instead. Will post algorithms and blog posts in the future
+Here are a few ML concepts that I worked on for some preliminary research on predicting the stock market.
 
 ## Currently doing:
 #### - Testing various models and strategies on QuantConnect
