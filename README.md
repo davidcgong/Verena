@@ -1,6 +1,6 @@
-# Verena (preliminary research)
+# Verena
 
-## Finding a way to better visualize the stock market and possible predictions in Python using ML
+## Research on the stock market with Python
 
 Note: I swapped to developing algorithmic trading on QuantConnect
 
