@@ -6,8 +6,6 @@ Screens high sentiment penny stocks that are not low float, buys them, holds the
 
 ![Penny Stock Bull Strat. Results](https://i.imgur.com/8azl8Cd.png)
 
-![alt text](https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png "Logo Title Text 1")
-
 Return - 160% annualized (not accounting for 4000% return overall because of invalid data from Quantopian on that 1 day.)
 Sharpe - 4.93
 Max Drawdown - -7.18%
