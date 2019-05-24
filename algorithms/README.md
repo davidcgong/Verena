@@ -1,5 +1,7 @@
 # Algorithms
 
+Check out [davidcgong.com](https://davidcgong.com) to read about other strategies that I haven't published here
+
 ## Bull Sentiment Penny Stock Strategy (PennyStock_Bull_Sentiment.py)
 
 Screens high sentiment penny stocks that are not low float, buys them, holds them overnight, and sells the next day
